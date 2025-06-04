@@ -14,6 +14,7 @@ import logging
 from typing import Dict, Any, List, Tuple, Optional
 
 from utils.logger import get_logger, AnalysisLogger
+from .advanced_color_analyzer import AdvancedColorAnalyzer
 
 
 class ColorAnalyzer:
@@ -30,6 +31,9 @@ class ColorAnalyzer:
         
         # ヒストグラム設定
         self.hist_bins = self._get_histogram_bins()
+        
+        # 高度解析器の初期化
+        self.advanced_analyzer = AdvancedColorAnalyzer(config)
         
     def analyze(self, original_img: np.ndarray, processed_img: np.ndarray) -> Dict[str, Any]:
         """
@@ -91,6 +95,11 @@ class ColorAnalyzer:
             
             # 品質指標
             results["quality_metrics"] = self._calculate_quality_metrics(original_img, processed_img)
+            
+            # 高度解析（精度設定に応じて実行）
+            if self.precision in ["high", "ultra"]:
+                self.logger.info("高度色彩解析を実行中...")
+                results["advanced_analysis"] = self._run_advanced_analysis(original_img, processed_img)
             
             # サマリー生成
             results["summary"] = self._generate_summary(results)
@@ -493,4 +502,47 @@ class ColorAnalyzer:
             
         except Exception as e:
             self.logger.error(f"サマリー生成エラー: {e}")
+            return {"error": str(e)}
+    
+    def _run_advanced_analysis(self, original_img: np.ndarray, processed_img: np.ndarray) -> Dict[str, Any]:
+        """高度色彩解析の実行"""
+        try:
+            advanced_results = {}
+            
+            # Delta E2000解析
+            self.logger.debug("Delta E2000解析実行中...")
+            advanced_results["delta_e2000"] = self.advanced_analyzer.analyze_delta_e2000(
+                original_img, processed_img
+            )
+            
+            # 色域解析
+            self.logger.debug("色域解析実行中...")
+            advanced_results["color_gamut"] = self.advanced_analyzer.analyze_color_gamut(
+                original_img, processed_img
+            )
+            
+            # 色温度解析
+            self.logger.debug("色温度解析実行中...")
+            advanced_results["color_temperature"] = self.advanced_analyzer.analyze_color_temperature(
+                original_img, processed_img
+            )
+            
+            # 高度ヒストグラム解析
+            if self.precision == "ultra":
+                self.logger.debug("高度ヒストグラム解析実行中...")
+                advanced_results["advanced_histograms"] = self.advanced_analyzer.analyze_advanced_histograms(
+                    original_img, processed_img
+                )
+                
+                # 色彩調和解析
+                self.logger.debug("色彩調和解析実行中...")
+                advanced_results["color_harmony"] = self.advanced_analyzer.analyze_color_harmony(
+                    original_img, processed_img
+                )
+            
+            self.logger.info("高度色彩解析完了")
+            return advanced_results
+            
+        except Exception as e:
+            self.logger.error(f"高度色彩解析エラー: {e}")
             return {"error": str(e)}

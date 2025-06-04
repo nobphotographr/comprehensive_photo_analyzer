@@ -3,7 +3,7 @@
 # 解析設定
 analysis:
   phase: "basic"  # basic, intermediate, advanced, all
-  analyzers: ["color"]  # color, texture, optical, impression
+  analyzers: ["color", "texture", "impression"]  # color, texture, optical, impression
   color_spaces: ["RGB", "HSV", "LAB"]  # 解析する色空間
   precision: "standard"  # standard, high, ultra
 
@@ -49,3 +49,38 @@ phase_settings:
   advanced:
     features: ["all"]
     precision: "ultra"
+
+# テクスチャ解析設定
+texture:
+  edge_threshold: 50  # エッジ検出の閾値
+  noise_window_size: 5  # ノイズ測定のウィンドウサイズ
+  glcm_distances: [1, 2, 3]  # GLCM計算の距離
+  glcm_angles: [0, 45, 90, 135]  # GLCM計算の角度（度）
+  gabor_frequencies: [0.1, 0.3, 0.5]  # Gaborフィルタの周波数
+  gabor_angles: [0, 45, 90, 135]  # Gaborフィルタの角度（度）
+  lbp_radius: 8  # LBPの半径
+  lbp_points: 24  # LBPのサンプルポイント数
+
+# 印象・感情解析設定
+impression:
+  warmth_threshold: 0.5  # 暖色/寒色の閾値
+  saturation_weight: 0.3  # 彩度の重み
+  brightness_weight: 0.4  # 明度の重み
+  contrast_weight: 0.3  # コントラストの重み
+  aesthetic_weights:  # 美的評価の重み
+    composition: 0.25
+    color_harmony: 0.2
+    balance: 0.2
+    golden_ratio: 0.1
+    complexity: 0.15
+    unity: 0.1
+
+# 高度バッチ処理設定
+batch:
+  max_workers: 4  # 並列処理数
+  chunk_size: 10  # チャンクサイズ
+  enable_progress: true  # 進捗表示
+  enable_statistics: true  # 統計分析
+  output_individual_reports: true  # 個別レポート出力
+  auto_discovery: true  # 自動ペア検出
+  supported_formats: ["jpg", "jpeg", "png", "tiff", "bmp"]  # サポート形式

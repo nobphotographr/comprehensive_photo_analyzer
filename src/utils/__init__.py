@@ -7,9 +7,12 @@ Utilities Module
 
 from .config_manager import ConfigManager
 from .logger import setup_logger
+from .image_utils import ImageUtils, PerformanceMonitor
 # BatchProcessorは循環インポートを避けるため遅延インポート
 
 __all__ = [
     "ConfigManager",
-    "setup_logger", 
+    "setup_logger",
+    "ImageUtils",
+    "PerformanceMonitor"
 ]

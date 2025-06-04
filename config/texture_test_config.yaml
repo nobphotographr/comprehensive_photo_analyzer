@@ -1,0 +1,43 @@
+# テクスチャ解析テスト用設定
+
+analysis:
+  phase: "basic"
+  analyzers: ["color", "texture"]
+  color_spaces: ["RGB", "HSV", "LAB"]
+  precision: "standard"
+
+processing:
+  max_image_size: [2000, 2000]
+  resize_for_analysis: true
+  analysis_size: [800, 800]  # 高速化のため小さいサイズ
+  preserve_aspect_ratio: true
+
+output:
+  format: "html"
+  directory: "data/output"
+  include_raw_data: true
+  include_visualizations: true
+  compression: false
+
+performance:
+  multiprocessing: false  # シンプルに実行
+  max_workers: 1
+  memory_limit: "2GB"
+  gpu_acceleration: false
+
+logging:
+  level: "INFO"
+  file_output: true
+  console_output: true
+  log_directory: "logs"
+
+# テクスチャ解析設定
+texture:
+  edge_threshold: 50
+  noise_window_size: 5
+  glcm_distances: [1, 2]  # 高速化のため少なく
+  glcm_angles: [0, 90]
+  gabor_frequencies: [0.1, 0.3]
+  gabor_angles: [0, 90]
+  lbp_radius: 8
+  lbp_points: 24

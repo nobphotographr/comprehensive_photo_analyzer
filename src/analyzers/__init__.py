@@ -5,6 +5,9 @@ Specialized Analyzers
 特定の画像特性を解析する専門アナライザー
 """
 
+from .texture_analyzer import TextureAnalyzer
+from .impression_analyzer import ImpressionAnalyzer
+
 # Phase 4以降で実装予定
 # from .grain_analyzer import GrainAnalyzer
 # from .halation_analyzer import HalationAnalyzer
@@ -13,5 +16,6 @@ Specialized Analyzers
 # from .quality_analyzer import QualityAnalyzer
 
 __all__ = [
-    # "現在は空…Phase 4以降で実装"
+    "TextureAnalyzer",
+    "ImpressionAnalyzer"
 ]

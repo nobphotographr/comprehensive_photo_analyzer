@@ -1,0 +1,32 @@
+# 超高精度色彩解析設定
+
+analysis:
+  phase: "basic"
+  analyzers: ["color", "texture", "impression"]
+  color_spaces: ["RGB", "HSV", "LAB"]
+  precision: "ultra"  # 超高精度モードで全高度解析を有効化
+
+processing:
+  max_image_size: [7000, 7000]
+  resize_for_analysis: true
+  analysis_size: [1000, 1000]  # 超高精度用に計算量を調整
+  preserve_aspect_ratio: true
+
+output:
+  format: "html"
+  directory: "data/output"
+  include_raw_data: true
+  include_visualizations: true
+  compression: false
+
+performance:
+  multiprocessing: true
+  max_workers: 2  # 高負荷解析のため並列数を削減
+  memory_limit: "12GB"  # 超高精度解析用に大幅増量
+  gpu_acceleration: false
+
+logging:
+  level: "INFO"
+  file_output: true
+  console_output: true
+  log_directory: "logs"
