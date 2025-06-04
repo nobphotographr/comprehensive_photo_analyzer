@@ -1,0 +1,51 @@
+# Comprehensive Photo Analysis Tool - Default Configuration
+
+# 解析設定
+analysis:
+  phase: "basic"  # basic, intermediate, advanced, all
+  analyzers: ["color"]  # color, texture, optical, impression
+  color_spaces: ["RGB", "HSV", "LAB"]  # 解析する色空間
+  precision: "standard"  # standard, high, ultra
+
+# 画像処理設定
+processing:
+  max_image_size: [7000, 7000]  # 最大画像サイズ [width, height]
+  resize_for_analysis: true  # 解析用リサイズを行う
+  analysis_size: [2000, 2000]  # 解析用サイズ [width, height]
+  preserve_aspect_ratio: true  # アスペクト比を保持
+
+# 出力設定
+output:
+  format: "html"  # html, json, csv, all
+  directory: "data/output"  # 出力ディレクトリ
+  include_raw_data: true  # 生データを含める
+  include_visualizations: true  # 可視化を含める
+  compression: false  # 出力ファイルの圧縮
+
+# パフォーマンス設定
+performance:
+  multiprocessing: true  # マルチプロセシングを使用
+  max_workers: 4  # 最大ワーカー数
+  memory_limit: "4GB"  # メモリ制限
+  gpu_acceleration: false  # GPU加速（未実装）
+
+# ログ設定
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file_output: true  # ファイル出力
+  console_output: true  # コンソール出力
+  log_directory: "logs"  # ログディレクトリ
+
+# Phase別の詳細設定
+phase_settings:
+  basic:
+    features: ["histogram", "statistics", "color_shift"]
+    precision: "standard"
+    
+  intermediate:
+    features: ["histogram", "statistics", "color_shift", "grain", "edges"]
+    precision: "high"
+    
+  advanced:
+    features: ["all"]
+    precision: "ultra"

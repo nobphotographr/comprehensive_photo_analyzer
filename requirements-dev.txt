@@ -1,0 +1,9 @@
+# 開発・テスト用依存関係
+pytest>=7.4.0            # テストフレームワーク
+pytest-cov>=4.1.0        # カバレッジ測定
+black>=23.7.0             # コードフォーマッター
+flake8>=6.0.0             # リンター
+mypy>=1.5.0               # 型チェック
+pre-commit>=3.3.0         # プレコミットフック
+jupyter>=1.0.0            # Jupyter Notebook
+ipykernel>=6.25.0         # Jupyter カーネル

@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+*.egg-info/
+dist/
+build/
+
+# 画像・データファイル（大容量）
+data/input/
+data/output/
+*.jpg
+*.jpeg
+*.png
+*.tiff
+*.tif
+*.raw
+*.dng
+
+# ただし小容量サンプルは管理対象
+!data/sample/small_sample.jpg
+!tests/test_data/*.jpg
+
+# ログ・一時ファイル
+logs/
+*.log
+temp/
+.cache/
+
+# IDE設定（個人設定は除外）
+.vscode/settings.json
+.vscode/launch.json
+# ただし共通設定は管理
+!.vscode/settings.json.template
+!.vscode/launch.json.template
+
+# OS固有
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# PyCharm
+.idea/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+
+# pytest
+.pytest_cache/

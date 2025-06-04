@@ -1,0 +1,57 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Phase 1 Basic Analysis",
+            "type": "python",
+            "request": "launch",
+            "program": "main.py",
+            "args": [
+                "--mode", "single",
+                "--original", "data/sample/small_sample.jpg",
+                "--processed", "data/sample/small_sample_processed.jpg",
+                "--phase", "1-3"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {"PYTHONPATH": "${workspaceFolder}"}
+        },
+        {
+            "name": "Comprehensive Analysis",
+            "type": "python", 
+            "request": "launch",
+            "program": "main.py",
+            "args": [
+                "--mode", "comprehensive",
+                "--original", "data/sample/small_sample.jpg",
+                "--processed", "data/sample/small_sample_processed.jpg",
+                "--phase", "all"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {"PYTHONPATH": "${workspaceFolder}"}
+        },
+        {
+            "name": "Batch Processing",
+            "type": "python",
+            "request": "launch", 
+            "program": "main.py",
+            "args": [
+                "--mode", "batch",
+                "--input-dir", "data/sample/batch_test/",
+                "--output-dir", "data/output/batch_results/"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {"PYTHONPATH": "${workspaceFolder}"}
+        },
+        {
+            "name": "Custom Config",
+            "type": "python",
+            "request": "launch",
+            "program": "main.py",
+            "args": [
+                "--config", "config/default_config.yaml"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {"PYTHONPATH": "${workspaceFolder}"}
+        }
+    ]
+}
