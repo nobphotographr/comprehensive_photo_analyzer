@@ -7,10 +7,9 @@ Utilities Module
 
 from .config_manager import ConfigManager
 from .logger import setup_logger
-from .batch_processor import BatchProcessor
+# BatchProcessorは循環インポートを避けるため遅延インポート
 
 __all__ = [
     "ConfigManager",
     "setup_logger", 
-    "BatchProcessor",
 ]
