@@ -1,0 +1,22 @@
+{
+  "pairs": [
+    {
+      "name": "gradient_test",
+      "original": "gradient_original.jpg",
+      "processed": "gradient_processed.jpg",
+      "description": "カラーグラデーションテスト"
+    },
+    {
+      "name": "landscape_test",
+      "original": "landscape_original.jpg",
+      "processed": "landscape_processed.jpg",
+      "description": "風景写真テスト"
+    },
+    {
+      "name": "portrait_test",
+      "original": "portrait_original.jpg",
+      "processed": "portrait_processed.jpg",
+      "description": "ポートレートテスト"
+    }
+  ]
+}

@@ -14,6 +14,8 @@ from datetime import datetime
 import base64
 from io import BytesIO
 
+import matplotlib
+matplotlib.use('Agg')  # GUI無しバックエンドを使用
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -347,7 +349,9 @@ class ReportGenerator:
                 
                 # 色パレット表示
                 for i, (color, pct) in enumerate(zip(orig_colors, orig_percentages)):
-                    ax1.barh(i, pct, color=color, alpha=0.8)
+                    # 色の値を0-1の範囲に正規化
+                    normalized_color = np.clip(color, 0, 1)
+                    ax1.barh(i, pct, color=normalized_color, alpha=0.8)
                     ax1.text(pct + 1, i, f'{pct:.1f}%', va='center')
                 
                 ax1.set_title('Original Image')
@@ -362,7 +366,9 @@ class ReportGenerator:
                 
                 # 色パレット表示
                 for i, (color, pct) in enumerate(zip(proc_colors, proc_percentages)):
-                    ax2.barh(i, pct, color=color, alpha=0.8)
+                    # 色の値を0-1の範囲に正規化
+                    normalized_color = np.clip(color, 0, 1)
+                    ax2.barh(i, pct, color=normalized_color, alpha=0.8)
                     ax2.text(pct + 1, i, f'{pct:.1f}%', va='center')
                 
                 ax2.set_title('Processed Image')
